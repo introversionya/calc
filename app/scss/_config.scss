@@ -1,0 +1,36 @@
+/*! Общие стили */
+
+// Добавляем border-box на весь проект
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+// Вытягиваем все картинки по ширине
+img {
+  width: 100%;
+  height: auto;
+}
+
+// Настройки body
+body {
+  min-width: 320px;
+  position: relative;
+}
+
+// Класс для авто дефисов при резайсе окна (не работает на движке blink)
+.text-wrap {
+  word-break: break-all;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+}
