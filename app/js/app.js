@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
   const body = document.querySelector('body');
   const app = document.querySelector(".app");
   let numValue;
+
   const btns = [
     7,
     8,
@@ -36,10 +37,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
   for (let i = 0; i < btns.length; i++) {
     document.querySelector(".app__btn-wrap").innerHTML += `
     <button class="app__btn">${btns[i]}</button>`;
-  }
+  };
 
   document.querySelectorAll(".app__btn").forEach(function (el, i, arr) {
-    el.style.width = "20%";
+    el.style.width = '20%';
   });
 
   document.querySelector(".app__menu-wrap").innerHTML += `
@@ -67,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
       document
         .querySelector(".app__toggle-btn")
         .classList.toggle("app__toggle-btn--icon");
-    }
+    };
 
     document.querySelectorAll(".app__btn").forEach(function (el, i, arr) {
       if (e.target === arr[i]) {
@@ -86,58 +87,59 @@ document.addEventListener("DOMContentLoaded", function (e) {
   function err(e) {
     if (input.value === 'undefined') {
       input.value = '';
-    }
-  }
+    };
+  };
 
   let resTemplate;
 
   function calc(e) {
-    if (e.target.textContent !== "DEL") {
-      input.value += numValue;
-    } else {
-      let inputStr = input.value;
-      input.value = inputStr.slice(0, -1);
-    };
-
-    if (e.target.textContent === "=") {
-      var res = eval(input.value.slice(0, -1));
-      resTemplate = `${input.value}${ Number.isInteger(res) === true ? input.value = res : input.value = res.toFixed(1) }`;  
-      Number.isInteger(res) === true ? input.value = res : input.value = res.toFixed(1);    
-    };
-
-    if (e.target.textContent === "C") {
-      input.value = "";
-    };
-  };
-
+    try {
+      if (e.target.textContent !== "DEL") {
+        input.value += numValue;
+      } else {
+        let inputStr = input.value;
+        input.value = inputStr.slice(0, -1);
+      };
   
+      if (e.target.textContent === "=") {
+        var res = eval(input.value.slice(0, -1));
+        resTemplate = `${input.value}${ Number.isInteger(res) === true ? input.value = res : input.value = res.toFixed(1) }`;  
+        Number.isInteger(res) === true ? input.value = res : input.value = res.toFixed(1);
+      };
+  
+      if (e.target.textContent === "C") {
+        input.value = "";
+      };
+
+      if (input.value === "Infinity") {
+        input.value = "∞";
+      };
+
+    } catch (error) {
+      input.value = '(Что-то пошло не так, проверьте выражение)';
+      resTemplate = 'Ошибка';
+    };
+
+  };
 
   function memory(e) {
     let ul = document.querySelector('.ul');
 
-    let instance = `
-      <li class="instance">${resTemplate}</li>
-    `
+    let instance = `<li class="instance">${resTemplate}</li>`;
 
     if (e.target.textContent === '=' && input.value !== '') {
       ul.innerHTML += instance;
-    }
-   
+    };
   };
-
-
 
   function clearMemory(e) {
     const clear = document.querySelector('.clear');
     if (e.target === clear) {
       document.querySelectorAll('.instance').forEach(function(el, i, arr){
         arr[i].remove();
-      })
-      document.querySelectorAll('.answer').forEach(function(el, i, arr){
-        arr[i].remove();
-      })
-    }
-  }
+      });
+    };
+  };
 
   setInterval (colorChange, 7000);
 
@@ -157,27 +159,22 @@ document.addEventListener("DOMContentLoaded", function (e) {
       '#696969',
       '#000000',
       '#2F4F4F',
-      '#BC8F8F',
+      '#BC8F8F'
     ]
 
     let randomColor = Math.floor(Math.random() * arrColor.length);
-    // console.log(arrColor[randomColor]);
-  
     body.style.backgroundColor = `${arrColor[randomColor]}`;
-  }
+  };
 
-  
-  
   function updateApp() {
     let state = app.innerHTML;
     localStorage.setItem('state', state);
-  }
+  };
 
   function getStateApp() {
     if (localStorage.getItem('state') !== null) {
       app.innerHTML = localStorage.getItem('state');
-    }
-  }
-
+    };
+  };
 
 }); // end script

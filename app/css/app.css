@@ -369,7 +369,7 @@ ul .instance:last-child {
   border-radius: 0;
   background-color: #b6bbbf;
   padding: 3px 7px;
-  border: 1px solid #a3a3df;
+  border: none;
   border-bottom: none;
   width: 100%;
   height: 40px;
@@ -380,7 +380,8 @@ ul .instance:last-child {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: calc(100% - 40px)
+  height: calc(100% - 40px);
+  width: 100%
 }
 .app__btn-wrap {
   position: relative;
@@ -419,7 +420,7 @@ ul .instance:last-child {
   background-color: #d26b11
 }
 .app__menu-wrap {
-  min-width: 300px;
+  min-width: 40%;
   min-height: 100%;
   -webkit-transition: all .5s;
   -o-transition: all .5s;
@@ -449,7 +450,8 @@ ul .instance:last-child {
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  font-size: 20px
+  font-size: 20px;
+  cursor: pointer
 }
 .app__toggle-btn::before {
   display: -webkit-box;
@@ -498,8 +500,22 @@ ul .instance:last-child {
 }
 .clear {
   position: absolute;
+  padding: 2px 7px;
   bottom: 5px;
-  right: 5px
+  right: 5px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  background-color: #fff;
+  border: none
+}
+.clear:hover {
+  background-color: #f70;
+  color: #fff;
+  cursor: pointer
 }
 .app__menu-wrap--hidden {
   min-width: 0;
@@ -515,7 +531,9 @@ ul .instance:last-child {
   padding: 0
 }
 .app__menu-wrap--hidden .clear {
-  padding: 0
+  padding: 0;
+  border: none;
+  border-radius: 0
 }
 .app__menu-wrap--hidden .instance {
   padding: 0
